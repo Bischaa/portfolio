@@ -2,7 +2,7 @@ IFT1025 - TP1
 Travail à remettre le 14 novembre 2019
 
 Travail remis par Maxime Ton
-Matricules : 20143044
+Matricule : 20143044
 
 Lancer Main.java pour utiliser le programme.
 
