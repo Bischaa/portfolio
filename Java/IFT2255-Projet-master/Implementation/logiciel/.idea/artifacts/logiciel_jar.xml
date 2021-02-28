@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="logiciel:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/logiciel_jar</output-path>
+    <root id="archive" name="logiciel.jar">
+      <element id="module-output" name="logiciel" />
+      <element id="library" level="project" name="logiciel" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/out/artifacts/logiciel_jar/logiciel.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

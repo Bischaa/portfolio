@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">dev1</string>
+    <string name="titrebarre">Testeur de temps de réaction</string>
+    <string name="x_essaies_restant">x essaies restant</string>
+    <string name="clic">Clic</string>
+    <string name="bienvenue">Bienvenue</string>
+    <string name="message">Temps...d...attente...incomplet</string>
+    <string name="titre">Erreur</string>
+    <string name="onclic">Onclic</string>
+</resources>

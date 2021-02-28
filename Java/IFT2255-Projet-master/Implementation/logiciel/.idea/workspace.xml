@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="logiciel:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b5285190-b31a-4a38-ac40-8c6154c64f54" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/logiciel_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/logiciel.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/logiciel1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/module_logiciel.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/etien.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/org_junit_jupiter_junit_jupiter_5_4_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logiciel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/logiciel.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/logiciel/controleur/ControleurCompteTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/logiciel/controleur/ControleurCompteTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/logiciel/controleur/ControleurPrincipalTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/logiciel/controleur/ControleurPrincipalTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/logiciel/modele/enregistrement/RepertoireServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/logiciel/modele/enregistrement/RepertoireServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1liMu1rnPNtl2Y9ztiIlIdHFECV" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/out/artifacts/logiciel_jar/logiciel.jar" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Logiciel" type="JarApplication">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/logiciel_jar/logiciel.jar" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\Max\Documents\BitBucket\IFT2255-Devoir\Implementation\logiciel" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="logiciel:jar" />
+        </option>
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b5285190-b31a-4a38-ac40-8c6154c64f54" name="Default Changelist" comment="" />
+      <created>1608075677725</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1608075677725</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="740" y="356" key="#BuildArtifactsBeforeRunChooser" timestamp="1608076049019">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="740" y="356" key="#BuildArtifactsBeforeRunChooser/0.0.1920.1080/-1920.0.1920.1040@0.0.1920.1080" timestamp="1608076049019" />
+    <state x="414" y="194" width="1092" height="715" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1608076215270">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="414" y="194" width="1092" height="715" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080/-1920.0.1920.1040@0.0.1920.1080" timestamp="1608076215270" />
+    <state x="690" y="330" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1608075939797">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="690" y="330" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1080/-1920.0.1920.1040@0.0.1920.1080" timestamp="1608075939797" />
+    <state x="635" y="257" key="FileChooserDialogImpl" timestamp="1608076213786">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="635" y="257" key="FileChooserDialogImpl/0.0.1920.1080/-1920.0.1920.1040@0.0.1920.1080" timestamp="1608076213785" />
+    <state width="1877" height="295" key="GridCell.Tab.0.bottom" timestamp="1608076260886">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="295" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1920.0.1920.1040@0.0.1920.1080" timestamp="1608076260886" />
+    <state width="1877" height="295" key="GridCell.Tab.0.center" timestamp="1608076260886">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="295" key="GridCell.Tab.0.center/0.0.1920.1080/-1920.0.1920.1040@0.0.1920.1080" timestamp="1608076260886" />
+    <state width="1877" height="295" key="GridCell.Tab.0.left" timestamp="1608076260885">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="295" key="GridCell.Tab.0.left/0.0.1920.1080/-1920.0.1920.1040@0.0.1920.1080" timestamp="1608076260885" />
+    <state width="1877" height="295" key="GridCell.Tab.0.right" timestamp="1608076260886">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="295" key="GridCell.Tab.0.right/0.0.1920.1080/-1920.0.1920.1040@0.0.1920.1080" timestamp="1608076260886" />
+    <state x="440" y="114" key="SettingsEditor" timestamp="1608076196145">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="440" y="114" key="SettingsEditor/0.0.1920.1080/-1920.0.1920.1040@0.0.1920.1080" timestamp="1608076196145" />
+    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup" timestamp="1608076207430">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080/-1920.0.1920.1040@0.0.1920.1080" timestamp="1608076207430" />
+  </component>
+</project>

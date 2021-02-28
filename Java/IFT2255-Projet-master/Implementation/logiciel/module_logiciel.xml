@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_logiciel" default="compile.module.logiciel">
+  <dirname property="module.logiciel.basedir" file="${ant.file.module_logiciel}"/>
+  
+  <property name="module.jdk.home.logiciel" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.logiciel" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.logiciel" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.logiciel" value="-encoding UTF-8 -source 14 -target 14 ${compiler.args}"/>
+  
+  <property name="logiciel.output.dir" value="${module.logiciel.basedir}/out/production/logiciel"/>
+  <property name="logiciel.testoutput.dir" value="${module.logiciel.basedir}/out/test/logiciel"/>
+  
+  <path id="logiciel.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="logiciel.module.production.classpath">
+    <path refid="${module.jdk.classpath.logiciel}"/>
+    <path refid="library.org.junit.jupiter:junit-jupiter:5.4.2.classpath"/>
+  </path>
+  
+  <path id="logiciel.runtime.production.module.classpath">
+    <pathelement location="${logiciel.output.dir}"/>
+    <path refid="library.org.junit.jupiter:junit-jupiter:5.4.2.classpath"/>
+  </path>
+  
+  <path id="logiciel.module.classpath">
+    <path refid="${module.jdk.classpath.logiciel}"/>
+    <pathelement location="${logiciel.output.dir}"/>
+    <path refid="library.org.junit.jupiter:junit-jupiter:5.4.2.classpath"/>
+  </path>
+  
+  <path id="logiciel.runtime.module.classpath">
+    <pathelement location="${logiciel.testoutput.dir}"/>
+    <pathelement location="${logiciel.output.dir}"/>
+    <path refid="library.org.junit.jupiter:junit-jupiter:5.4.2.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.logiciel">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.logiciel">
+    <patternset refid="excluded.from.module.logiciel"/>
+  </patternset>
+  
+  <path id="logiciel.module.sourcepath">
+    <dirset dir="${module.logiciel.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  <path id="logiciel.module.test.sourcepath">
+    <dirset dir="${module.logiciel.basedir}">
+      <include name="tests"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.logiciel" depends="compile.module.logiciel.production,compile.module.logiciel.tests" description="Compile module logiciel"/>
+  
+  <target name="compile.module.logiciel.production" depends="register.custom.compilers" description="Compile module logiciel; production classes">
+    <mkdir dir="${logiciel.output.dir}"/>
+    <javac2 destdir="${logiciel.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.logiciel}/javac">
+      <compilerarg line="${compiler.args.logiciel}"/>
+      <bootclasspath refid="logiciel.module.bootclasspath"/>
+      <classpath refid="logiciel.module.production.classpath"/>
+      <src refid="logiciel.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.logiciel"/>
+    </javac2>
+    
+    <copy todir="${logiciel.output.dir}">
+      <fileset dir="${module.logiciel.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.logiciel.tests" depends="register.custom.compilers,compile.module.logiciel.production" description="compile module logiciel; test classes" unless="skip.tests">
+    <mkdir dir="${logiciel.testoutput.dir}"/>
+    <javac2 destdir="${logiciel.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.logiciel}/javac">
+      <compilerarg line="${compiler.args.logiciel}"/>
+      <bootclasspath refid="logiciel.module.bootclasspath"/>
+      <classpath refid="logiciel.module.classpath"/>
+      <src refid="logiciel.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.logiciel"/>
+    </javac2>
+    
+    <copy todir="${logiciel.testoutput.dir}">
+      <fileset dir="${module.logiciel.basedir}/tests">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.logiciel" description="cleanup module">
+    <delete dir="${logiciel.output.dir}"/>
+    <delete dir="${logiciel.testoutput.dir}"/>
+  </target>
+</project>

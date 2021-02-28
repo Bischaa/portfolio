@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Rapport IFT2255 - Devoir 1</title>
+    	<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+        
+        <!-- Question par rapport à l'énoncé:
+            - Comment se fait la validation des comptes? De ce que je comprends de l'énoncé, une autre organisation s'en charge
+                et met à jour la base de donnée de Centre de Donnée en indiquant quels comptes sont valides.
+
+            - On devrait probablement ajouter des méthodes pour consulter les inscriptions d'un membre.
+            - Je sais pas si la consultation des services est encore un cas d'utilisation nécessaire.
+            
+            - Comment on fait pour lier les services aux séances?
+            
+            - Pour l'authentification, on devrait plutôt utiliser une adresse courriel et un mot de passe
+            
+            - La présence de l'agent?
+        -->
+        
+        <!-- Remarques:
+            - Un service et une séance ne sont pas la même chose. Une séance correspond plus à la définition qu'on avait précédemment
+                d'un service (évènement récurrent sur une période de temps). Maintenant, un service n'a plus vraiment de définition.
+                -> il faudrait enregistrer les services offrables
+            - Changer la façon dont un implémente la notion de récurrence. On devrait plutôt demander les jours de la semaine où la séance
+                sera offerte et ensuite enregistrer ces jours sous forme de date.
+                
+           - En rapport avec la conception : créer une classe pour les codes de service/séance/compte/etc.
+        -->
+
+    	<style>
+    		
+	        table {
+	            border: outset 2px black;
+	            border-collapse: collapse;
+	        }
+
+	        th {
+	            border: solid 1px black;
+	        }
+
+	        td {
+	            border: solid 1px black;
+	        }
+            tr td:not(:first-child){
+                text-align:center;
+                vertical-align: top
+            }
+
+	        .first_col {
+	            border-right: double 2px black;
+	        }
+
+	        ul {
+	        	list-style-type: none;
+	        }
+
+
+            #cadre_diagramme_cu {
+                position: relative;
+                width: 70%;
+                height: auto;
+            }
+
+            #cadre_diagramme_cu img {
+                width: 100%;
+                height: auto;
+            }
+
+            .cadre_diagramme {
+                position: relative;
+                height: auto;
+            }
+
+             .cadre_diagramme img {
+                width: 100%;
+                height: auto;
+             }
+
+    	</style>
+
+	</head>
+
+
+
+	<body>
+		<h1 style="text-align: center;">
+        IFT 2255 - Devoir 3</h1>
+    <h2>
+        Information générale</h2>
+    <p>
+        <span style="font-weight: bold;">Nom: </span>Etienne Ameye
+        <br />
+        <span style="font-weight: bold;">Matricule: </span>8295
+        <br />
+        <span style="font-weight: bold;">Courriel: </span>etienne.ameye@umontreal.ca
+        <br />
+        <span style="font-weight: bold;">Temps mis: </span>± 45 heures
+    </p>
+     <p>
+        <span style="font-weight: bold;">Nom: </span>Michel Adant
+        <br />
+        <span style="font-weight: bold;">Matricule: </span>C1176
+        <br />
+        <span style="font-weight: bold;">Courriel: </span>michel.adant@umontreal.ca
+        <br />
+        <span style="font-weight: bold;">Temps mis: </span>± 29 heures
+    </p>
+    <p>
+        <span style="font-weight: bold;">Nom: </span>Maxime Ton
+        <br />
+        <span style="font-weight: bold;">Matricule: </span>20143044
+        <br />
+        <span style="font-weight: bold;">Courriel: </span>maxime.ton@umontreal.ca
+        <br />
+        <span style="font-weight: bold;">Temps mis: </span>± 35 heures
+    </p>
+    
+    <a href="devoir-ift-2255.vpp">Projet Visual Paradigm</a> 
+
+    <h2>Distribution des tâches</h2>
+    <p>Soumetteur: Maxime Ton</p>
+    <table cellpadding="7px">
+        <thead>
+            <tr>
+                <th class="first_col">
+                    Tâche
+                </th>
+                <th>
+                    Etienne
+                </th>
+                <th>
+                    Michel
+                </th>                
+                <th>
+                    Maxime
+                </th>
+            </tr>
+        </thead>
+        <tbody><tr>
+                <td class="first_col">
+                    Rapport
+                </td>
+                <td>
+                    33%
+                </td>
+                <td>
+                    33%
+                </td>
+                <td>
+                    33%
+                </td>
+            </tr>
+            <tr>
+                <td class="first_col">
+                    Glossaire
+                </td>
+                <td>
+                    -
+                </td>
+                <td>
+                    100%
+                </td>
+                <td>
+                   -
+                </td>
+            </tr>
+            <tr>
+                <td class="first_col">
+                    Diagramme de cas d'utilisation UML
+                </td>
+                <td>
+                    33%
+                </td>
+                <td>
+                   33%
+                </td>                
+                <td>
+                   33%
+                </td>
+            </tr>
+             <tr>
+                <td class="first_col">
+                    Description des cas d'utilisation
+                </td>
+                <td>
+                   Consulter les inscriptions à un service<br>
+                   Inscription à un service<br>
+                   Annuler l'inscription à un service<br>
+                   Consulter les services offerts aujourd'hui<br>
+                   Consulter tous les services offerts<br>
+                   Procédure comptable générale<br>
+                   Rapport de synthèse<br>
+                   Rapport des membres<br>
+                   Rapport des professionnels<br>
+                </td>
+                <td>
+                   Ajouter/Mettre à jour/Supprimer un usager<br>
+                   Ajouter/Mettre à jour/Supprimer un service
+                </td>                
+                <td>
+                    Valider un numéro de compte<br>
+                    Confirmer la présence à un service<br>
+                    Vérifier l'inscription à un service
+                </td>
+            </tr>
+            <tr>
+                <td class="first_col">
+                    Risques
+                </td>
+                <td>
+                    40%
+                </td>
+                <td>
+                    20%
+                </td>
+                <td>
+                    40%
+                </td>
+            </tr>
+            <tr>
+                <td class="first_col">
+                    Exigences non-fonctionnelles
+                </td>
+                <td>
+                    40%
+                </td>
+                <td>
+                    20%
+                </td>
+                <td>
+                    40%
+                </td>
+            </tr>
+            <tr>
+                <td class="first_col">
+                    Analyse
+                </td>
+                <td>
+                    10%
+                </td>
+                <td>
+                    10%
+                </td>
+                <td>
+                    80%
+                </td>
+            </tr>
+
+            <tr>
+                <td class="first_col">
+                    Diagrammes d'activité UML
+                </td>
+                <td>
+                    Ajouter/Mettre à jour/Supprimer un service<br>
+                    Inscription à une séance<br>
+                    Procédure comptable générale<br>
+                    Rapport de synthèse
+                </td>
+                <td>
+                    Ajouter/Mettre à jour/Supprimer un usager<br>
+                    Confirmer l'offre d'un service
+                </td>
+                <td>
+                    Diagramme principal
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="first_col">
+                    Mise à jour des artéfacts
+                </td>
+                <td>
+                    100%
+                </td>
+                <td>
+                    -
+                </td>
+                <td>
+                    -
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="first_col">
+                    Diagramme de classe
+                </td>
+                <td>
+                    15%
+                </td>
+                <td>
+                    15%
+                </td>
+                <td>
+                    70%
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="first_col">
+                    Diagramme de séquence
+                </td>
+                <td>
+                    33%
+                </td>
+                <td>
+                    33%
+                </td>
+                <td>
+                    33%
+                </td>
+            </tr>
+
+            <tr>
+                <td class="first_col">
+                    Mise à jour de l'analyse et la conception
+                </td>
+                <td>
+                    60%
+                </td>
+                <td>
+                    25%
+                </td>
+                <td>
+                    15%
+                </td>
+            </tr>
+
+            <tr>
+                <td class="first_col">
+                    Implémentation en Java
+                </td>
+                <td>
+                    40%
+                </td>
+                <td>
+                    30%
+                </td>
+                <td>
+                    30%
+                </td>
+            </tr>
+
+            <tr>
+                <td class="first_col">
+                    Tests unitaires
+                </td>
+                <td>
+                    33%
+                </td>
+                <td>
+                    33%
+                </td>
+                <td>
+                    33%
+                </td>
+            </tr>
+
+            <tr>
+                <td class="first_col">
+                    Livraison et documentation
+                </td>
+                <td>
+                    -
+                </td>
+                <td>
+                    -
+                </td>
+                <td>
+                    100%
+                </td>
+            </tr>
+        </tbody>
+    </table>
+	
+
+    <!-- 
+
+            <tr>
+                <td>
+                    
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    
+                </td>
+            </tr>
+    -->
+
+    <h2>Glossaire</h2>
+    <ul>
+		<li><b>Agent(e):</b> Employé(e) à la réception qui accueille, oriente et sert les visiteurs. Il/elle interagit avec le Centre de Données pour la gestion des membres, professionnels et services.</li>
+		<li><b>Centre de Données:</b> Centre où sont stockées les données personnelles des membres, des professionnels, les informations relatives aux services offerts, aux inscriptions aux services, aux confirmations d’inscriptions.</li>
+		<li><b>Client:</b> Membre ou professionnel.</li>
+        <li><b>Numéro de membre:</b> Numéro unique qui identifie le membre.</li>
+		<li><b>Numéro de professionnel:</b> Numéro unique qui identifie le professionnel.</li>
+		<li><b>Code de service:</b> Numéro de 7 chiffres unique qui identifie un service offert par un professionnel.</li>
+        <li><b>Compte:</b> Enregistrement sur le disque associé à un membre ou un professionnel.</li>
+        <li><b>Confirmation de présence:</b> Action qu'effectue le membre pour indiquer que le service a été rendu en avance.</li>
+		<li><b>Consultation:</b> Solliciter l’avis, les services d’un expert.</li>
+		<!-- <li><b>Cross-fit:</b> Entraînement comportant une variété de mouvements empruntés à différentes disciplines, effectués à intensité élevée en suivant un parcours composé de plusieurs stations.</li> -->
+		<li><b>Entraînement:</b> méthode et exercice physique visant l’amélioration des performances sportives (peut se faire sous la supervision d’un professionnel).</li>
+		<li><b>Entraîneur/euse personnel(le):</b> Professionnel(le) chargé d’assister des membres dans leur entraînement physique en leur proposant un programme adapté à leurs besoins et en les motivant par leur présence.</li>
+		<li><b>Expert(e) en exercice physique:</b> Spécialiste d’une ou plusieurs activités physiques.</li>
+		<li><b>Expert(e) en santé physique:</b> Spécialiste du bien-être physique, à distinguer de l’expert en exercice physique.</li>
+        <li><b>Frais d'adhésion:</b> Montant mensuel qui doit être payer par un membre.</li>
+        <li><b>Gérant:</b> La personne en charge de #GYM.</li>
+        <li><b>Informations personnelles:</b> Informations fournies par les clients lors de l'adhésion au #GYM.</li>
+        <li><b>Inscription à un service:</b> Indication qu'un membre est inscrit à un service.</li>
+		<!-- <li><b>Massothérapeute:</b> Spécialiste de la massothérapie.</li> -->
+		<li><b>Membre:</b> personne qui adhère au #GYM pour accéder aux installations et aux services.</li>
+		<!-- <li><b>Nutritionniste:</b> Spécialiste de la nutrition, d’une alimentation adaptée au fonctionnement harmonieux du corps humain.</li> -->
+		<!-- <li><b>Physiothérapeute:</b> Spécialiste en réadaptation physique (suite à des incapacités physiques qui découlent de blessures ou de maladies).</li> -->
+		<li><b>Professionnel(le):</b> Expert(e) d’un domaine particulier, personne de métier qui dispense un service à un membre.</li>
+		<li><b>Réception:</b> Partie du centre sportif où sont accueillis les visiteurs.</li>
+		<li><b>Répertoire des Services:</b> Section du logiciel qui permet de consulter les services offerts.</li>
+        <li><b>Requête:</b> Demande effectuée au système afin d'obtenir certaines informations.</li>
+		<li><b>Salle des machines:</b> Salle d’entraînement équipée d’appareils cardiovasculaires et de musculation.</li>
+		<li><b>Salle multisport:</b> Salle qui permet la pratique d’une variété de sports (ex: basketball, soccer, tennis, etc.).</li>
+        <li><b>Séance:</b> Occurence d'un service qui a lieu à certain jour à une certaine heure sur une période donnée avec une capacité maximale.</li>
+		<li><b>Service:</b> Activité physique ou consultation de santé physique qui peut être sous forme de séance par un professionnel.</li>
+		<!-- <li><b>Yoga:</b> Discipline d’origine indienne basée sur des exercices de postures et de respiration.</li> -->
+    </ul>
+    <br><br>
+    
+    <h2>Diagramme des cas d'utilisation</h2>
+    	<ul><b>Acteurs principaux:</b>
+    		<li>Membre</li>
+    		<li>Professionnel</li>
+            <li>Gérant</li>
+            <li>Temps</li>
+    	</ul>
+        <ul><b>Acteurs secondaires:</b>
+            <li>Agent</li>
+    	</ul>
+        <br>
+        <div id="cadre_diagramme_cu">
+            <a href="Exigence\Cas d'utilisation.jpg">
+                <img src="Exigence\Cas d'utilisation.jpg">
+            </a>
+        </div>
+
+    <h2>Cas d'utilisation</h2>
+        <!-- Mis à jour -->
+        <ul>
+            <li><b>Cas d'utilisation:</b> Authentification</li>
+            <li><b>But:</b> Vérifier si un client possède un compte valide pour lui donner accès aux fonctionnalités de l'application</li>
+            <li><b>Acteurs:</b> Client</li>
+            <li><b>Préconditions:</b>-</li>
+            <li><b>Postconditions:</b> Le client est connecté à l'application</li>
+            <li>
+                <b>Scénario principal:</b>
+                <ul>
+                    <li>1. Le client ouvrir l'application et se retrouve sur la page de connexion.</li>
+                    <li>2. Le client entre les informations de son compte Facebook.</li>
+                    <li>3. Le Centre de données trouve le numéro de client associé au compte Facebook.</li>
+                    <li>4. Le Centre de données vérifie si le compte est valide.</li>
+                    <li>5. L'application affiche "Validé" pour indiquer que le client a un compte valide.</li>
+                </ul>
+            </li>
+            <li>
+                <b>Scénarios alternatifs:</b>
+                <ul>
+                    <li>4a.1 Le compte du client est suspendu</li>
+                    <li>4a.2 Le Centre de données renvoie "Membre suspendu"</li>
+                    <li>4a.3 Le cas d'utilisation s'arrête</li>
+                    <br>
+                    <li>3a.1 Le Centre de données ne trouve pas le numéro de compte</li>
+                    <li>3a.2 Le Centre de données renvoie "Numéro invalide"</li>
+                    <li>3a.3 Le cas d'utilisation s'arrête</li>
+                </ul>
+            </li>
+        </ul>
+        <br>
+        
+        <!-- Ajouté -->
+        <ul>
+            <li><b>Cas d'utilisation:</b> Accéder au centre</li>
+            <li><b>But:</b> Le client veut accéder au centre.</li>
+            <li><b>Acteurs:</b> Client</li>
+            <li><b>Préconditions:</b> Le client est authentifié (donc il dispose d'un compte valide)</li>
+            <li><b>Postconditions:</b> Le client a accès au centre</li>
+            <li>
+                <b>Scénario principal:</b>
+                <ul>
+                    <li>1. Le client présente son code QR au lecteur placé sur le tourniquet.</li>
+                    <li>2. Le lecteur lis le code QR et envoie le numéro de compte au Centre de données.</li>
+                    <li>3. Le Centre de données vérifie qu'il s'agit bien d'un numéro de compte valide.</li>
+                    <li>4. Le tourniquet se débloque et le client à accès au centre.</li>
+                </ul>
+            </li>
+            <li>
+                <b>Scénario alternatif:</b>
+                <ul>
+                    <li>4a.1 Le numéro de compte n'est pas valide.</li>
+                    <li>4a.2 Le tourniquet ne se débloque pas.</li>
+                    <li>4a.3 Le cas d'utilisation s'arrête.</li>
+                </ul>
+            </li>
+        </ul>
+        <br>
+        
+        <!-- Mis à jour -->
+        <ul>
+            <li><b>Cas d'utilisation:</b> Inscription à une séance</li>
+            <li><b>But:</b> Inscrire un membre à une séance</li>
+            <li><b>Acteurs:</b> Membre, agent</li>
+            <li><b>Préconditions:</b> Le membre est authentifié (donc il dispose d'un compte valide)</li>
+            <li><b>Postconditions:</b> Le membre est inscrit à une séance.</li>
+            <li>
+                <b>Scénario principal:</b>
+                <ul>
+                    <li>1. Le membre consulte les services offerts et en choisit un.</li>
+                    <li>2. L'application affiche les séances offertes pour le service.</li>
+                    <li>2. Le membre choisit une séance.</li>
+                    <li>3. Le logiciel affiche les frais de la séance.</li>
+                    <li>4. Le membre confirme l'inscription.</li>
+                    <li>5. L'application envoie une requête au Centre de données pour indiquer l'inscription du client.</li>
+                    <li>6. Le Centre de données enregistre l'inscription du client.</li>
+                    
+                </ul>
+            </li>
+            <li>
+                <b>Scénarios alternatifs:</b>
+                <ul>
+                    <li>4a.1 La capacité maximal de la séance est atteinte.</li>
+                    <li>4a.2 Le cas d'utilisation s'arrête.</li>
+                    <br>
+                    <li>4b.1 Il y a un conflit d'horaire avec une autre séance auquel est inscrit le membre.</li>
+                    <li>4b.2 Le cas d'utilisation s'arrête.</li>
+                    <br>
+                    <li>5a.1 Le membre décide de ne pas s'inscrire.</li>
+                    <li>5a.2 Le cas d'utilisation s'arrête.</li>
+                </ul>
+            </li>
+        </ul>
+        <br>
+
+        <!-- Mis à jour -->
+        <ul>
+            <li><b>Cas d'utilisation:</b> Annuler une inscription à une séance</li>
+            <li><b>But:</b> Annuler l'inscription d'un membre à une séance</li>
+            <li><b>Acteurs:</b> Membre</li>
+            <li><b>Préconditions:</b> Le membre est authentifié (donc il dispose d'un compte valide)</li>
+            <li><b>Postconditions:</b> Le membre n'est plus inscrit à la séance</li>
+            <li>
+                <b>Scénario principal:</b>
+                <ul>
+                    <li>1. Le membre consulte les séances auquel il est inscrit.</li>
+                    <li>2. Le membre sélectionne une séance.</li>
+                    <li>3. L'application envoie une requête au Centre de données pour annuler l'inscription du membre.</li>
+                    <li>4. Le Centre de données supprime l'enregistrement de l'inscription du membre.</li>                   
+                </ul>
+            </li>
+            <li>
+                <b>Scénarios alternatifs:</b>
+                <ul>
+                    <li>1a.1 Le membre n'est pas inscrit à une séance.</li>
+                    <li>1a.2 Le cas d'utilisation s'arrête.</li>
+                    <br>
+                    <li>2a.1 Le membre décide de ne pas annuler son inscription.</li>
+                    <li>2a.2 Le cas d'utilisation termine.</li>
+                </ul>
+            </li>
+        </ul>
+        <br>
+
+        <!-- Je pense que c'est plus nécessaire
+        <ul>
+            <li><b>Cas d'utilisation:</b> Consulter les services offerts</li>
+            <li><b>But:</b> Consulter les services offerts pour la journée</li>
+            <li><b>Acteurs:</b> Agent, membre</li>
+            <li><b>Préconditions:</b>-</li>
+            <li><b>Postconditions:</b>-</li>
+            <li>
+                <b>Scénario principal:</b>
+                <ul>
+                    <li>1. L'agent envoie une requête au Centre de données pour consulter les services offerts pour la journée.</li>
+                    <li>2. Appel à "Consulter tous les services offerts".</li>
+                    <li>3. L'agent sélectionne les services offerts aujourd'hui.</li>
+                    <li>4. Le Centre de données renvoie la liste des services offert pour la journée.</li>
+                </ul>
+            </li>
+            <li><b>Scénarios alternatifs:</b> Pas de scénario alternatif</li>
+        </ul>
+        <br>
+        
+        <ul>
+            <li><b>Cas d'utilisation:</b> Consulter tous les services</li>
+            <li><b>But:</b> Connaître tous les services offerts</li>
+            <li><b>Acteurs:</b> Agent, membre</li>
+            <li><b>Préconditions:</b>-</li>
+            <li><b>Postconditions:</b>-</li>
+            <li>
+                <b>Scénario principal:</b>
+                <ul>
+                    <li>1. Le Centre de données reçoit une requête de consultation des services.</li>
+                    <li>2. Le Centre de données consulte le Répertoire des services et récupère tous les services enregistrés.</li>
+                    <li>3. Le Centre de données renvoie la liste des services offerts.</li>
+                </ul>
+            </li>
+            <li><b>Scénarios alternatifs:</b> Pas de scénario alternatif</li>
+        </ul>
+        <br>
+        -->
+
+        <!-- Mis à jour -->
+        <!-- Peut-être extraire un cas d'utiliser "Consulter les séances offertes" commun à "Consulter les inscriptions à une séance" -->
+        <ul>
+            <li><b>Cas d'utilisation:</b> Confirmer la présence à une séance</li>
+            <li><b>But:</b> Produire une confirmation que le service a été offert au membre</li>
+            <li><b>Acteurs:</b> Professionnel, membre</li>
+            <li><b>Préconditions:</b> Le membre et le professionnel sont authentifiés(donc ils disposent de comptes valides).</li>
+            <li><b>Postconditions:</b> Une confirmation que la séance a été offerte est stockée dans le Centre de données</li>
+            <li>
+                <b>Scénario principal:</b>
+                <ul>
+                    <li>1. Le membre se présente à la séance et présente son code QR au professionnel.</li>
+                    <li>2. Le professionnel consulte les séances qu'il offre et sélectionne la séance actuelle.</li>
+                    <li>3. Le professionnel sélectionne l'option "Confirmer inscription".</li>
+                    <li>4. Le professionnel lis le code QR du membre avec son application.</li>
+                    <li>5. Le Centre de donnée vérifie l'inscription du membre à la séance.</li>
+                    <li>6. L'application affiche "Validé" pour indiquer que le membre est bien inscrit à la séance.</li>
+                    <li>7. Une confirmation est crée sur le disque.</li>
+                </ul>
+            </li>
+            <li>
+                <b>Scénarios alternatifs:</b>
+                <ul>
+                    <li>6a.1 Le membre n'est pas inscrit à la séance.</li>
+                    <li>6a.2 L'application affiche "Invalide" pour indiquer que le membre n'est pas inscrit à la séance.</li>
+                    <li>6a.3 Le cas d'utilisation s'arrête.</li>
+                </ul>
+            </li>
+        </ul>
+        <br>
+
+        <!-- Pas vraiment nécessaire
+        <ul>
+            <li><b>Cas d'utilisation:</b> Vérifier l'inscription d'un membre à un service</li>
+            <li><b>But:</b> Vérifier si un membre spécifique est inscrit à un service</li>
+            <li><b>Acteurs:</b> Agent, Professionnel</li>
+            <li><b>Préconditions:</b> Le client est un membre avec un compte valide</li>
+            <li><b>Postconditions:</b> L'inscription est validée ou invalidée</li>
+            <li>
+                <b>Scénario principal:</b>
+                <ul>
+                    <li>1. L'agent accède au Répertoire des Services et rentre le code du service.</li>
+                    <li>2. L'agent séletionne la séance appropriée.</li>
+                    <li>3. L'agent sélectionne "Vérifier inscriptions" et rentre le numéro du membre.</li>
+                    <li>4. Le Centre de données trouve un enregistrement associé au numéro de membre avec le code de service demandé.</li>
+                    <li>5. Le Centre de données renvoie "Validé" si le membre est inscrit.</li>
+                </ul>
+            </li>
+            <li>
+                <b>Scénarios alternatifs:</b>
+                <ul>         
+                    <li>2a.1 Le centre de données ne trouve pas de service correspondant.</li>
+                    <li>2a. Le cas d'utilisation s'arrête</li>
+                </ul>
+            </li>
+        </ul>
+        <br>
+        -->
+
+        <!-- Mis à jour -->
+        <ul>
+            <li><b>Cas d'utilisation:</b> Création d'un compte</li>
+            <li><b>But:</b> Créer un nouveau compte pour un client</li>
+            <li><b>Acteurs:</b> Client, agent</li>
+            <li><b>Préconditions:</b> Le client n'est pas un membre/professionnel et veut s'inscrire</li>
+            <li><b>Postconditions:</b> Le client a un compte de membre/professionnel valide</li>
+            <li>
+                <b>Scénario principal:</b>
+                <ul>
+                    <li>1. Le client se présente à la réception.</li>
+                    <li>2. L'agent lui demande un compte Facebook valide et d'autres informations personnelles.</li>
+                    <li>3. Le logiciel affiche les frais d'adhésion.</li>
+                    <li>4. Le client paie les frais d'adhésion.</li>
+                    <li>5. L'agent envoie une requête de création de compte au Centre de données.</li>
+                    <li>6. Le Centre de données crée un nouveau compte membre/professionnel et lui assigne un numéro à neuf chiffre.</li>
+                </ul>
+            </li>
+            <li>
+                <b>Scénarios alternatifs:</b>
+                <ul>
+                    <li>4a.1 Le client refuse de payer les frais d'adhésion.</li>
+                    <li>4a.2 Le cas d'utilisation s'arrête.</li>
+                </ul>
+            </li>
+        </ul>
+        <br>
+
+        <!-- Mis à jour -->
+        <ul>
+            <li><b>Cas d'utilisation:</b> Mettre à jour un compte</li>
+            <li><b>But:</b> Modifier les informations d'un membre ou d'un professionnel</li>
+            <li><b>Acteurs:</b> Client</li>
+            <li><b>Préconditions:</b> Le client est authentifié (donc il possède un compte valide)</li>
+            <li><b>Postconditions:</b>-</li>
+            <li>
+                <b>Scénario principal:</b>
+                <ul>
+                    <li>1. Le client entre les nouvelles informations dans l'application.</li>
+                    <li>2. L'application envoit les informations au Centre de données.</li>
+                    <li>3. Le compte du client est mis à jour avec les nouvelles informations.</li>
+                </ul>
+            </li>
+            <li>
+                <b>Scénarios alternatifs:</b> pas de scénario alternatif
+            </li>
+        </ul>
+        <br>
+
+        <!-- Mis à jour -->
+        <ul>
+            <li><b>Cas d'utilisation:</b> Supprimer un compte</li>
+            <li><b>But:</b> Supprimer le compte d'un client</li>
+            <li><b>Acteurs:</b> Client</li>
+            <li><b>Préconditions:</b> Le client est authentifié (donc il possède un compte valide</li>
+            <li><b>Postconditions:</b> Le client n'a plus de compte</li>
+            <li>
+                <b>Scénario principal:</b>
+                <ul>
+                    <li>1. Le client décide de supprimer son compte.</li>
+                    <li>2. L'application envoit une requête au Centre de données pour supprimer le compte.</li>
+                    <li>3. Le compte du client est supprimé.</li>
+                </ul>
+            </li>
+            <li>
+                <b>Scénarios alternatifs:</b> pas de scénario alternatif
+            </li>
+        </ul>
+        <br>
+
+        <!-- Mis à jour -->
+        <ul>
+            <li><b>Cas d'utilisation:</b> Ajouter une séance</li>
+            <li><b>But:</b> Ajouter une nouvelle séance d'un service donné</li>
+            <li><b>Acteurs:</b> Agent, Professionnel</li>
+            <li><b>Préconditions:</b> Le professionnel dispose d'un numéro de compte</li>
+            <li><b>Postconditions:</b> Une nouvelle séance est offerte</li>
+            <li>
+                <b>Scénario principal:</b>
+                <ul>
+                    <li>1. Le professionnel se présente à la réception et veut ajouter une séance à un service qu'il offre.</li>
+                    <li>2. L'agent appelle "Valider compte".</li>
+                    <li>3. L'agent accède le logiciel.</li>
+                    <li>4. Le professionnel donne les dates, l'heure, les frais, la capacité maximal de la séance ainsi que la récurrence hebdomadaire.</li>
+                    <li>5. L'agent envoit une requête de création d'une nouvelle séance au logiciel, avec les informations données par le professionnel.</li>
+                    <li>6. Le logiciel créé un enregistrement pour la nouvelle séance, et retourne un numéro de séance (SeanceID).</li>                   
+                </ul>
+            </li>
+            <li>
+                <b>Scénarios alternatifs:</b>
+                <ul>
+                    <li>2a. Le professionnel ne dispose pas d'un compte valide.</li>
+                    <li>Le cas d'utilisation s'arrête.</li>
+                </ul>
+            </li>
+        </ul>
+        <br>
+
+        <!-- Mis à jour -->
+        <ul>
+            <li><b>Cas d'utilisation:</b> Mettre à jour une séance de service</li>
+            <li><b>But:</b> Modifier une séance d'un service</li>
+            <li><b>Acteurs:</b> Agent, Professionnel</li>
+            <li><b>Préconditions:</b> Une séance de service donnée par un professionnel existe. Le professionnel veut modifier les informations relatives à cette séance</li>
+            <li><b>Postconditions:</b> L'information de la séance est mise à jour</li>
+            <li>
+                <b>Scénario principal:</b>
+                <ul>
+                    <li>1. Le professionnel se présente à la réception et veut modifier les informations d'une séance à un service qu'il offre.</li>
+                    <li>2. L'agent appelle "Valider compte".</li>
+                    <li>3. L'agent accède le logiciel. </li>
+                    <li>4. Le professionnel donne les nouvelles informations par rapport à la séance, ainsi que le SeanceID.</li>
+                    <li>5. L'agent accède aux informations de la séance, et modifie ses informations.</li>
+                    <li>6. Le logiciel modifie l'enregistrement pour la séance, et retourne le numéro de séance (SeanceID).</li>   
+                </ul>
+            </li>
+            <li>
+                <b>Scénarios alternatifs:</b> pas de scénario alternatif
+            </li>
+        </ul>
+        <br>
+
+        <!-- Mis à jour -->
+        <ul>
+            <li><b>Cas d'utilisation:</b> Supprimer une séance de service</li>
+            <li><b>But:</b> Supprimer un séance d'un service donné</li>
+            <li><b>Acteurs:</b> Agent, Professionnel</li>
+            <li><b>Préconditions:</b> Une séance donnée par un professionnel existe. Le professionnel veut supprimer les informations relatives à cette séance</li>
+            <li><b>Postconditions:</b> La séance n'est plus offert</li>
+                     <li>
+                <b>Scénario principal:</b>
+                <ul>
+                    <li>1. L'agent rentre le code de séance dans le logiciel ou consulte les séances offertes pour un certain service.</li>
+                    <li>2. L'agent supprime la séance voulue dans le système.</li>
+                    <li>3. L'enregistrement ayant le SeanceID voulu est supprimé du disque.</li>
+                </ul>
+            </li>
+            <li>
+                <b>Scénarios alternatifs:</b> pas de scénario alternatif
+            </li>
+        </ul>
+        <br>
+
+        <!-- Mis à jour -->
+        <ul>
+            <li><b>Cas d'utilisation:</b> Consulter les inscriptions à une séance</li>
+            <li><b>But:</b> Consulter tous les membres inscrits à une séance spécifique</li>
+            <li><b>Acteurs:</b> Professionnel</li>
+            <li><b>Préconditions:</b> Le professionnel est authentifié (donc il dispose d'un compte valide)</li>
+            <li><b>Postconditions:</b>-</li>
+            <li>
+                <b>Scénario principal:</b>
+                <ul>
+                    <li>1. Le professionnel consulte tous les séances qu'il offre.</li>
+                    <li>2. Le professionnel sélectionne une séance.</li>
+                    <li>3. L'application affiche les inscriptions à cette séance.</li>
+                </ul>
+            </li>
+            <li>
+                <b>Scénarios alternatifs:</b>
+                <ul>
+                    <li>1a.1 Le professionnel n'offre pas de séance.</li>
+                    <li>1a.2 Le cas d'utilisation s'arrête.</li>
+                </ul>
+            </li>
+        </ul>
+        <br>
+        
+        <!-- Mis à jour -->
+        <ul>
+            <li><b>Cas d'utilisation:</b> Procédure comptable principale</li>
+            <li><b>But:</b> Génère des enregistrement pour le montant à payer à chaque professionnel, à chaque semaine</li>
+            <li><b>Acteurs:</b> Temps</li>
+            <li><b>Préconditions:</b> Il est minuit le vendredi soir</li>
+            <li><b>Postconditions:</b>-</li>
+            <li>
+                <b>Scénario principal:</b>
+                <ul>
+                    <li>1. Consulter tous les professionnels.</li>
+                    <li>2. Pour chaque professionnel, calculer la somme des frais des séances qu'il a offertes.</li>
+                    <li>3. Pour chaque professionnel, créer un fichier TEF contenant ses informations du professionnel et le montant qui lui est dû.</li>
+                    <li>4. Appel à "Rapport de synthèse".</li>
+                </ul>
+            </li>
+        </ul>
+        <br>
+        
+        <!-- Mis à jour -->
+        <ul>
+            <li><b>Cas d'utilisation:</b> Rapport de synthèse</li>
+            <li><b>But:</b> Produire un rapport concernant les séances offertes durant la semaine et les professionnels à payer</li>
+            <li><b>Acteurs:</b> Gérant</li>
+            <li><b>Préconditions:</b>-</li>
+            <li><b>Postconditions:</b>-</li>
+            <li>
+                <b>Scénario principal:</b>
+                <ul>
+                    <li>1. Consulter toutes les séances offert durant la semaine.</li>
+                    <li>2. Compter le nombre de séances offertes.</li>
+                    <li>3. Calculer le total des frais des séances offertes.</li>
+                    <li>4. Pour chaque professionnel, compter le nombre de séances qu'il a offertes.</li>
+                    <li>5. Pour chaque professionnel, calculer le total des frais des séances qu'il a offertes.</li>
+                    <li>6. Créer le rapport de synthèse contenant les informations.</li>
+                    <li>7. Envoyer le rapport au gérant.</li>
+                </ul>
+            </li>
+        </ul>
+        <br>
+        
+        <!-- Ajouté -->
+        <ul>
+            <li><b>Cas d'utilisation:</b> Rapport des membre</li>
+            <li><b>But:</b> Produire un facture pour les services suivis durant la semaine pour chaque membre</li>
+            <li><b>Acteurs:</b> Temps</li>
+            <li><b>Préconditions:</b> Il est minuit le vendredi soir</li>
+            <li><b>Postconditions:</b>-</li>
+            <li>
+                <b>Scénario principal</b>
+                <ul>
+                    <li>1. Consulter tous les membres.</li>
+                    <li>2. Pour chaque membre, ajouter les informations du compte à la facture.</li>
+                    <li>3. Pour chaque membre, consulter les séances suivies par le membre.
+                        <ul>
+                            <li>3.1 Pour chaque séances, ajouter à la facture la date de la séance, le nom du professionnel ayant offert la séance et le nom de la séance.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <br>
+        
+        <!-- Ajouté -->
+        <ul>
+            <li><b>Cas d'utilisation:</b> Rapport des professionnels</li>
+            <li><b>But:</b> Produire un avis de paiement pour les séances offertes durant la semaine pour chaque professionnel</li>
+            <li><b>Acteurs:</b> Temps</li>
+            <li><b>Préconditions:</b> Il est minuit le vendredi soir</li>
+            <li><b>Postconditions:</b>-</li>
+            <li>
+                <b>Scénario principal</b>
+                <ul>
+                    <li>1. Consulter tous les professionnels.</li>
+                    <li>2. Pour chaque professionnel, ajouter les informations du compte à l'avis de paiement.</li>
+                    <li>3. Pour chaque professionnel, consulter les séance offertes durant la semaine.
+                        <ul>
+                            <li>3.1 Pour chaque séance, ajouter la date de la séance à l'avis de paiement.</li>
+                            <li>3.2 Pour chaque séance, ajouter la date et l'heure à laquelle les données de la séance ont été reçu par l'ordinateur.</li>
+                            <li>3.3 Pour chaque séance, ajouter le nombre de membre ayant suivit la séance</li>
+                            <li>3.4 Pour chaque séance, ajouter le code de la séance à la facture</li>
+                            <li>3.5 Pour chaque séance, ajouter les frais de la séance. </li>
+                        </ul>
+                    </li>
+                    <li>4. Pour chaque professionnel, calculer le nombre de séances offertes durant la semaine.</li>
+                    <li>5. Pour chaque professionnel, calculer le total des frais des séances qu'il a offert.</li>
+                </ul>
+            </li>
+        </ul>
+
+       <!-- Ajouté -->
+        <ul>
+            <li><b>Cas d'utilisation:</b>Mise à jour du statut des membres</li>
+            <li><b>But:</b> Mettre à jour le statut (suspendu/valide) selon les frais payés</li>
+            <li><b>Acteurs:</b> RnB</li>
+            <li><b>Préconditions:</b>Il est 21h.</li>
+            <li><b>Postconditions:</b>-</li>
+            <li>
+                <b>Scénario principal</b>
+                <ul>
+                    <li>1. Consulter tous les membres.</li>
+                    <li>2. Pour chaque membre, vérifier que le paiement des frais est en retard de plus d'un mois.</li>
+                    <li>3. Si c'est le cas, modifier le statut comme étant "suspendu".</li>
+                    <li>
+                        <b>Scénarios alternatifs:</b>
+                        <ul>
+                    <li>3a.1 Si les frais sont payés, modifier le statut comme étant "valide"</li>
+                    
+                        </ul>
+            </li>
+
+                </ul>
+            </li>
+        </ul>
+
+
+    <h2>Risques</h2>
+    <ul>
+        <li>Risque sévère : Usurpation d'identité parce qu'on ne vérifie l'identité qu'avec un numéro.</li>
+        <li>Risque important : Le logiciel est trop lent et affecte le fonctionnement régulier du gym.</li>
+        <li>Risque éloigné : Un professionnel donne un cours pour lequel il n'a pas les compétences.</li>
+        <li>Obstacle mineur : Pas de techniques pour retrouver son numéro de client si jamais on le perd.</li>
+        <li>Obstacle important: Les agents de la réception doivent apprendre à utiliser le nouveau logiciel.</li>
+    </ul>
+    
+    <h2>Exigences non-fonctionnelles</h2>
+    <ul>
+        <li>La validation d'un abonnement doit être rapide (moins d'une seconde).</li>
+        <li>Le systèmes doit être disponible souvent et il doit y avoir peu de panne.</li>
+        <li>Les données doivent être stockées de façon sécuritaire pour éviter un vol de données.</li>
+        <li>L'application doit être simple à utiliser.</li>
+        <li>L'application doit fonctionner correctement même avec beaucoup de membres.</li>
+    </ul>
+    
+    <h2>Analyse</h2>
+    
+    <!-- 1.1 : Quelles parties informatise-t-on
+    1.2 : Où seront stockées les données
+    1.3 : Quel matériel sera nécéssaire
+    1.4 : Comment le système interagira avec les autres systèmes
+    1.5 : Comment les utilisateurs interagiront avec le système -->
+    <p style="margin-left: 40px">
+    	L'entièreté du projet sera informatisé. Le client n'a qu'un seul centre sportif, on veut alors informatiser ce logiciel 
+        sur un ou quelques ordinateurs sur place. Les données seront stockées localement sous forme de fichiers. Premièrement, 
+        nous aurons les fichiers principaux enregistrés sur le disque contenant les champs demandés. Il y aura un fichier secondaire 
+        contenant toutes les informations reliées aux abonnenements des membres. Le matériel nécéssaire sera un ordinateur capable 
+        de supporter le logiciel, ainsi qu'un ou plusieurs disques durs pour stocker les données nécéssaires. Le logiciel interagira 
+        avec d'autres systèmes en utilisant des requêtes, et il renverra les informations nécéssaires à ces systèmes. 
+        Pour les tests, il recevera des demandes sous la forme de commandes d'un agent, et renverra les informations nécéssaires 
+        sous forme de texte. Éventuellement, notre logiciel sera relié à une interface graphique, qui agira elle-même 
+        comme utilisateur principal du logiciel.
+    </p>
+
+    <h2>Diagrammes d'activités</h2>
+    <br>
+    <h3>Diagramme d'activité principal</h3>
+    <div class="cadre_diagramme" style="width:65%">
+        <a href="Analyse\Diagramme d'activité principal.jpg">
+            <img src="Analyse\Diagramme d'activité principal.jpg"/>
+        </a>
+    </div>
+    <br>
+    <br>
+    <br>
+    <h3>Ajouter/Mettre à jour/Supprimer une séance</h3>
+    <div class="cadre_diagramme" style="width:65%">
+        <a href="Analyse\Ajouter_Mettre à jour_Supprimer un service.jpg">
+            <img src="Analyse\Ajouter_Mettre à jour_Supprimer un service.jpg"/>
+        </a>
+    </div>
+    <br>
+    <br>
+    <br>
+    <h3>Ajouter/Mettre à jour/Supprimer un usager</h3>
+    <div class="cadre_diagramme" style="width:75%">
+        <a href="Analyse\Ajouter_Mettre à jour_Supprimer un usager.jpg">
+            <img src="Analyse\Ajouter_Mettre à jour_Supprimer un usager.jpg"/>
+        </a>
+    </div>
+    <br>
+    <br>
+    <br>
+    <h3>Confimer la présence à une séance</h3>
+    <div class="cadre_diagramme" style="width:50%">
+        <a href="Analyse\Confirmer la présence à un service.jpg">
+            <img src="Analyse\Confirmer la présence à un service.jpg"/>
+        </a>
+    </div>
+    <br>
+    <br>
+    <br>
+    <h3>Inscription à une séance</h3>
+    <div class="cadre_diagramme" style="width:65%">
+        <a href="Analyse\Inscription à une séance.jpg">
+            <img src="Analyse\Inscription à une séance.jpg"/>
+        </a>
+    </div>
+    <br>
+    <br>
+    <br>
+    <h3>Procédure comptale générale</h3>
+    <div class="cadre_diagramme" style="width:35%">
+        <a href="Analyse\Procédure comptale générale.jpg">
+            <img src="Analyse\Procédure comptable générale.jpg"/>
+        </a>
+    </div>
+    <br>
+    <br>
+    <br>
+    <h3>Rapport de synthèse</h3>
+    <div class="cadre_diagramme" style="width:25%">
+        <a href="Analyse\Rapport de synthèse.jpg">
+            <img src="Analyse\Rapport de synthèse.jpg"/>
+        </a>
+    </div>
+    
+    <h2>Digramme de classe</h2>
+    <div class="cadre_diagramme" style="width:60%">
+        <a href="Conception\Diagramme de classes.jpg">
+            <img src="Conception\Diagramme de classes.jpg"/>
+        </a>
+    </div>
+    
+    <h2>Diagrammes de séquence</h2>
+    <br>
+    <h3>Gestion des membres</h3>
+    <div class="cadre_diagramme" style="width:50%">
+        <a href="Conception\Gestion des membres.jpg">
+            <img src="Conception\Gestion des membres.jpg"/>
+        </a>
+    </div>
+    <br>
+    <br>
+    <h3>Gestion des séances</h3>
+    <div class="cadre_diagramme" style="width:50%">
+        <a href="Conception\Gestion des services.jpg">
+            <img src="Conception\Gestion des services.jpg"/>
+        </a>
+    </div>
+    <br>
+    <br>
+    <h3>Inscription à une séance</h3>
+    <div class="cadre_diagramme" style="width:50%">
+        <a href="Conception\Inscription séance.jpg">
+            <img src="Conception\Inscription séance.jpg"/>
+        </a>
+    </div>
+    <br>
+    <br>
+    <h3>Confirmation de présence</h3>
+    <div class="cadre_diagramme" style="width:50%">
+        <a href="Conception\Confirmation de présence.jpg">
+            <img src="Conception\Confirmation de présence.jpg"/>
+        </a>
+    </div>
+    <br>
+    <br>
+    <h3>Procédure comptable générale</h3>
+    <div class="cadre_diagramme" style="width:50%">
+        <a href="Conception\Procédure comptable générale.jpg">
+            <img src="Conception\Procédure comptable générale.jpg"/>
+        </a>
+    </div>
+    
+    <h2>Prototype</h2>
+    <a href="Implementation\prototype\out\artifacts\prototype_jar">
+        Implementation/protype/out/artifacts/prototype_jar
+    </a>
+
+    <h2>Code</h2>
+    <a href="Implementation\logiciel\out\artifacts\logiciel_jar">
+    	Implementation/logiciel/out/artifacts/logiciel_jar
+    </a>
+
+    <h2>JavaDoc</h2>
+    <a href="Implementation\Documentation">
+    	Implementation/Documentation
+    </a>
+
+    <h2>Manuel Utilisateur</h2>
+    <a href="ManuelUtilisateurIFT2255.pdf">
+    	ManuelUtilisateurIFT2255.pdf
+    </a>
+    
+    <h2>Collaboration</h2>
+    <div class="cadre_diagramme" style="width:65%">
+        <a href="collaboration.png">
+            <img src="collaboration.png"/>
+        </a>
+    </div>
+
+	</body>
+
+
+</html>

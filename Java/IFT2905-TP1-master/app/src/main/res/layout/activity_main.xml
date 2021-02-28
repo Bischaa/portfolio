@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/lay1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/moccasin">
+
+        <LinearLayout
+            android:id="@+id/lay2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/moccasin">
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#EFEDED"
+                android:focusable="auto"
+                android:fontFamily="serif"
+                app:autoSizeMaxTextSize="20dp"
+                app:autoSizeTextType="uniform"
+                android:textStyle="bold"
+                android:gravity="center_horizontal"/>
+
+            <Chronometer
+                android:id="@+id/chrono"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:background="@color/moccasin"
+                android:cursorVisible="false"
+                android:fontFamily="serif"
+                android:gravity="center_horizontal"
+                android:visibility="invisible"></Chronometer>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="636dp"
+            android:text="@string/onclic"
+            android:visibility="visible"
+            app:backgroundTint="#C67C00" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
