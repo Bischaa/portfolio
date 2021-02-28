@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Exercice Formulaire</title>
+</head>
+<body>
+	<h1>Votre choix de film</h1>
+	<form name="Votre choix de film" action="">
+		Titre:
+		<input type="text" name="Titre">
+		Années:
+		<input type="text" name="Années" value="2008">
+		<br>
+		<br>
+		Comédie:
+		<input type="checkbox" name="Comédie">
+		Drame:
+		<input type="checkbox" name="Drame">
+		Histoire:
+		<input type="checkbox" name="Histoire">
+		Suspense:
+		<input type="checkbox" name="Suspense">
+		<br>
+		<br>
+		France:
+		<input type="radio" name="Pays" value="1">
+		États-Unis:
+		<input type="radio" name="Pays" value="2">
+		Allemagne:
+		<input type="radio" name="Pays" value="3">
+		Japon:
+		<input type="radio" name="Pays" value="4">
+		<br>
+		<br>
+		Metteur en scène:
+		<select name="Metteur">
+			<option value="1">Quentin Tarantino</option>
+			<option value="2">Akira Kurosawa</option>
+			<option value="3">John Woo</option>
+			<option value="4">Alfred Hitchcock</option>
+			<option value="5">Tim Burton</option>
+			<option value="6">Maurice Pialat</option>
+		</select>
+		<br>
+		<br>
+		Résumé:
+		<textarea name="Résumé">Résumé du film</textarea>
+		<br>
+		<br>
+		<input type="submit" value="Valider">
+		<input type="button" value="Annuler" onclick="window.location.reload()">
+	</form>
+</body>
+</html>

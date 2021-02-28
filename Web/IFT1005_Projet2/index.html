@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <!-- CSS Libraries -->
+    <!-- ================================= -->
+    <link 
+      rel="stylesheet" 
+      href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,700" 
+    />
+
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <!-- Animate.css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css"
+    />
+
+    <!-- My CSS -->
+    <!-- ================================= -->
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <!-- JS Libraries -->
+    <!-- ================================= -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+
+    <!-- My Scripts -->
+    <script src="./js/scripts.js"></script>
+    <script src="./js/_data_.js"></script>
+    <title>Document</title>
+  </head>
+  <body class="bg-light">
+    <!-- Navigation -->
+    <header class="sticky-top">
+     <nav class="navbar navbar-expand-lg navbar-light bg-white text-dark sticky-top text-uppercase">
+       <svg height = "30px" width = "30px">
+            <circle cx = "50%" cy = "50%" r = "25%" fill = "none" stroke = "#000000" stroke-width = "5%">
+              <animate attributeName="r" begin="0s" dur="1.5s" repeatCount="indefinite" from="5%" to="25%"/>
+              <animate attributeName="stroke-width" begin="0s"  dur="1.5s" repeatCount="indefinite" from="3%" to="0%" />
+              <animate attributeName="opacity" begin="0s"  dur="1.5s" repeatCount="indefinite" from="1" to="0"/>
+            </circle>
+       </svg>
+       <a id="nomtante" class="navbar-brand" href="#">Nom Tante</a>
+       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle  navigation">
+          <span class="navbar-toggler-icon"></span>
+       </button>
+       <div class="collapse navbar-collapse" id="navbarNav">
+         <ul class="navbar-nav ml-auto">
+           <li class="nav-item active">
+            <a class="nav-link" href="#accueil">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#recettes">Recettes</a>
+          </li>
+          <li class="nav-item">
+             <a class="nav-link" href="#contact">Contact</a>
+          </li>
+        </ul>
+       </div>
+     </nav>
+     </header>
+    <!-- Closing: Navigation -->
+    <!-- Accueil (images de unsplash.com) -->
+    <div id="accueil" class="container-fluid p-0">
+      <div id="accueil-header" class="container-fluid form-group d-flex flex-column font-weight-bolder text-black py-5" style='background-image: url("./assets/bgfruits.jpg"); height: 100%; width: 100%; background-position: center; background-repeat: no-repeat; background-size: cover;'>
+        <h1 id="accueil-header-title" class="d-flex justify-content-center text-uppercase pt-5 pb-3"></h1>
+        <h3 id="accueil-header-subtitle" class="d-flex justify-content-center py-3 text-primary">Des recettes pour tout le monde!</h3>
+        <div id="accueilbuttons" class="container-fluid d-flex flex-row justify-content-center py-5">
+          <button type="button" class="btn btn-outline-primary btn-lg article1title d-flex justify-content-center shadow mx-3 animated slideInLeft" onclick='location.href="#article1"'></button>
+          <button type="button" class="btn btn-outline-primary btn-lg article2title d-flex justify-content-center shadow mx-3 animated slideInDown" onclick='location.href="#article2"'></button>
+          <button type="button" class="btn btn-outline-primary btn-lg article3title d-flex justify-content-center shadow mx-3 animated slideInRight" onclick='location.href="#article3"'></button>
+          <br>
+        </div>
+        <button type="button" class="container-fluid btn btn-primary btn-lg d-flex flex-row justify-content-center shadow mt-3 mb-5 animated slideInUp" onclick="location.href='#contact'" style="width: 30%">Contactez-moi!</button>
+      </div>
+      <div id="articles" class="mx-3 mb-5">
+        <div id="article1" class="card shadow px-4 py-2 mb-3" style="width: 75%;">
+         <h1 class="article1title"></h1>
+         <img src="./assets/quisuisje.jpg" alt="Qui suis-je" class="rounded float-left" style="width: 50%; height: auto;"><hr>
+         <h3 id="article1subtitle" class="text-muted"></h3>
+         <p id="article1content" class="text-info"></p>
+       </div>
+       <div id="article2" class="card shadow float-right px-4 py-2 mb-3" style="width: 75%;">
+         <h1 class="article2title"></h1>
+         <img src="./assets/tofu.jpg" alt="Tofu" class="rounded float-right" style="width: 50%; height: auto;"><hr>
+         <h3 id="article2subtitle" class="text-muted"></h3>
+         <p id="article2content" class="text-info"></p>
+       </div>
+       <div id="article3" class="card shadow px-4 py-2 mb-3" style="width: 75%;">
+         <h1 class="article3title"></h1>
+         <img src="./assets/chef.jpg" alt="chef" class="rounded float-left" style="width: 50%; height: auto;"><hr>
+         <h3 id="article3subtitle" class="text-muted"></h3>
+         <p id="article3content" class="text-info"></p>
+       </div>
+     </div>
+    </div>
+    <hr>
+    <!-- Closing: Acceuil -->
+    <!-- Recettes -->
+    <div id="recettes" class="container-fluid mt-5">
+      <h1 id="recettestitle" class="text-center text-primary"></h1>
+      <div id="recettes1-4" class="container-fluid d-flex justify-content-center mt-3">
+        <div id="recette1" class="card shadow p-3 m-3" style="width: 20%">
+          <img id="recette1img" src="./assets/lasagna.jpg" alt="Lasagne" class="rounded" style="width: 100%; height: auto;"><hr>
+          <p id="recette1description" class="text-info"></p>
+          <h1 class="text-muted">Prix:</h1>
+          <div class="d-flex">
+            <h1 id="recette1prix" class="text-info"></h1><h1 class="text-black">$</h1>
+          </div>
+          <button type="button" class="container-fluid btn btn-outline-primary btn-sm text-center mt-auto" onclick="location.href='#contact'">Contactez-moi!</button>
+        </div>
+        <div id="recette2" class="card shadow p-3 m-3" style="width: 20%">
+          <img id="recette2img" src="./assets/tofugeneraltao.jpg" alt="tofu general tao" class="rounded" style="width: 100%; height: auto;"><hr>
+          <p id="recette2description" class="text-info"></p>
+          <h1 class="text-muted">Prix:</h1>
+          <div class="d-flex">
+            <h1 id="recette2prix" class="text-info"></h1><h1 class="text-black">$</h1>
+          </div>
+          <button type="button" class="container-fluid btn btn-outline-primary btn-sm text-center mt-auto" onclick="location.href='#contact'">Contactez-moi!</button>
+        </div>
+        <div id="recette3" class="card shadow p-3 m-3" style="width: 20%">
+          <img id="recette3img" src="./assets/tempehburger.jpg" alt="tempeh" class="rounded" style="width: 100%; height: auto;"><hr>
+          <p id="recette3description" class="text-info"></p>
+          <h1 class="text-muted">Prix:</h1>
+          <div class="d-flex">
+            <h1 id="recette3prix" class="text-info"></h1><h1 class="text-black">$</h1>
+          </div>
+          <button type="button" class="container-fluid btn btn-outline-primary btn-sm text-center mt-auto" onclick="location.href='#contact'">Contactez-moi!</button>
+        </div>
+        <div id="recette4" class="card shadow p-3 m-3" style="width: 20%">
+          <img id="recette4img" src="./assets/pastasalad.jpg" alt="pasta" class="rounded" style="width: 100%; height: auto;"><hr>
+          <p id="recette4description" class="text-info"></p>
+          <h1 class="text-muted">Prix:</h1>
+          <div class="d-flex">
+            <h1 id="recette4prix" class="text-info"></h1><h1 class="text-black">$</h1>
+          </div>
+          <button type="button" class="container-fluid btn btn-outline-primary btn-sm text-center mt-auto" onclick="location.href='#contact'">Contactez-moi!</button>
+        </div>
+      </div>
+      <div id="recettes5-8" class="container-fluid d-flex justify-content-center">
+        <div id="recette5" class="card shadow p-3 m-3" style="width: 20%">
+          <img id="recette5img" src="./assets/saute.jpg" alt="saute" class="rounded" style="width: 100%; height: auto;"><hr>
+          <p id="recette5description" class="text-info"></p>
+          <h1 class="text-muted">Prix:</h1>
+          <div class="d-flex">
+            <h1 id="recette5prix" class="text-info"></h1><h1 class="text-black">$</h1>
+          </div>
+          <button type="button" class="container-fluid btn btn-outline-primary btn-sm text-center mt-auto" onclick="location.href='#contact'">Contactez-moi!</button>
+        </div>
+        <div id="recette6" class="card shadow p-3 m-3" style="width: 20%">
+          <img id="recette6img" src="./assets/fruitsalad.jpg" alt="fruit salad" class="rounded" style="width: 100%; height: auto;"><hr>
+          <p id="recette6description" class="text-info"></p>
+          <h1 class="text-muted">Prix:</h1>
+          <div class="d-flex">
+            <h1 id="recette6prix" class="text-info"></h1><h1 class="text-black">$</h1>
+          </div>
+          <button type="button" class="container-fluid btn btn-outline-primary btn-sm text-center mt-auto" onclick="location.href='#contact'">Contactez-moi!</button>
+        </div>
+        <div id="recette7" class="card shadow p-3 m-3" style="width: 20%">
+          <img id="recette7img" src="./assets/soupe.jpg" alt="Soupe" class="rounded" style="width: 100%; height: auto;"><hr>
+          <p id="recette7description" class="text-info"></p>
+          <h1 class="text-muted">Prix:</h1>
+          <div class="d-flex">
+            <h1 id="recette7prix" class="text-info"></h1><h1 class="text-black">$</h1>
+          </div>
+          <button type="button" class="container-fluid btn btn-outline-primary btn-sm text-center mt-auto" onclick="location.href='#contact'">Contactez-moi!</button>
+        </div>
+        <div id="recette8" class="card shadow p-3 m-3" style="width: 20%">
+          <img id="recette8img" src="./assets/smokedsalmon.jpg" alt="Salmon" class="rounded" style="width: 100%; height: auto;"><hr>
+          <p id="recette8description" class="text-info"></p>
+          <h1 class="text-muted">Prix:</h1>
+          <div class="d-flex">
+            <h1 id="recette8prix" class="text-info"></h1><h1 class="text-black">$</h1>
+          </div>
+          <button type="button" class="container-fluid btn btn-outline-primary btn-sm text-center mt-auto" onclick="location.href='#contact'">Contactez-moi!</button>
+        </div>
+      </div>
+      <div id="recettes9-12" class="container-fluid d-flex justify-content-center mb-5">
+        <div id="recette9" class="card shadow p-3 m-3" style="width: 20%">
+          <img id="recette9img" src="./assets/notcookies.jpg" alt="Croquettes" class="rounded" style="width: 100%; height: auto;"><hr>
+          <p id="recette9description" class="text-info"></p>
+          <h1 class="text-muted">Prix:</h1>
+          <div class="d-flex">
+            <h1 id="recette9prix" class="text-info"></h1><h1 class="text-black">$</h1>
+          </div>
+          <button type="button" class="container-fluid btn btn-outline-primary btn-sm text-center mt-auto" onclick="location.href='#contact'">Contactez-moi!</button>
+        </div>
+        <div id="recette10" class="card shadow p-3 m-3" style="width: 20%">
+          <img id="recette10img" src="./assets/poutine.jpg" alt="Poutine" class="rounded" style="width: 100%; height: auto;"><hr>
+          <p id="recette10description" class="text-info"></p>
+          <h1 class="text-muted">Prix:</h1>
+          <div class="d-flex">
+            <h1 id="recette10prix" class="text-info"></h1><h1 class="text-black">$</h1>
+          </div>
+          <button type="button" class="container-fluid btn btn-outline-primary btn-sm text-center mt-auto" onclick="location.href='#contact'">Contactez-moi!</button>
+        </div>
+        <div id="recette11" class="card shadow p-3 m-3" style="width: 20%">
+          <img id="recette11img" src="./assets/curry.jpg" alt="Curry" class="rounded" style="width: 100%; height: auto;"><hr>
+          <p id="recette11description" class="text-info"></p>
+          <h1 class="text-muted">Prix:</h1>
+          <div class="d-flex">
+            <h1 id="recette11prix" class="text-info"></h1><h1 class="text-black">$</h1>
+          </div>
+          <button type="button" class="container-fluid btn btn-outline-primary btn-sm text-center mt-auto" onclick="location.href='#contact'">Contactez-moi!</button>
+        </div>
+        <div id="recette12" class="card shadow p-3 m-3" style="width: 20%">
+          <img id="recette12img" src="./assets/quinoaballs.jpg" alt="Quinoa" style="width: 100%; height: auto;"><hr>
+          <p id="recette12description" class="text-info"></p>
+          <h1 class="text-muted">Prix:</h1>
+          <div class="d-flex">
+            <h1 id="recette12prix" class="text-info"></h1><h1 class="text-black">$</h1>
+          </div>
+          <button type="button" class="container-fluid btn btn-outline-primary btn-sm text-center mt-auto" onclick="location.href='#contact'">Contactez-moi!</button>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <!-- Closing: Recettes -->
+    <!-- Contact -->
+    <div id="contact" class="container-fluid form-group">
+      <form id="contactform" class="justify-content-center" action="http://www.iro.umontreal.ca/~lapalme/ift1005/Exercices/9/echoValeurs.cgi">
+        <h1 class="animated infinite flash slow text-primary text-center">Contactez-moi!</h1><br>
+        Nom:<br>
+        <input type="text" id="name" class="form-control" required><br>
+        Adresse:<br>
+        <input type="text" id="address" class="form-control" required><br>
+        Code Postal:<br>
+        <input type="text" id="postalcode" class="form-control" placeholder="xxxyyy" pattern="[0-9]{1}[a-zA-Z]{1}[0-9]{1}[a-zA-Z]{1}[0-9]{1}[a-zA-Z]{1}" required><br>
+        Ville:<br>
+        <input type="text" id="city" class="form-control" required><br>
+        Numéro de téléphone:<br>
+        <input type="tel" id="phone" class="form-control" placeholder="xxx-xxx-xxxx" pattern="[5|4]{1}[1|8|5]{1}[4|3|0]{1}-[0-9]{3}-[0-9]{4}" required><br>
+        Description:<br>
+        <input type="text" id="description" class="form-control input-lg" placeholder="Veuillez entrer une description de ce que vous voulez acheter." style="width: 100%; height: 200px" required><br><br>
+        <input type="submit" id="sub" class="btn btn-primary" value="Soumettre votre demande"><br>
+      </form>
+    </div>
+    <hr>
+    <!-- Closing: Contact -->
+    <footer>
+    </footer>
+  </body>
+</html>

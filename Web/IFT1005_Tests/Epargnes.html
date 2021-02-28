@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<script>
+		function epargnes() {
+			var e = prompt("Entrez votre montant épargné initial");
+			var r = prompt("Entrez votre revenu");
+			var d = prompt("Entrez vos dépenses");
+			e = window.parseInt(+e + +r - +d);
+			alert("À la fin de la semaine le montant épargné final est: $"+e);
+		}
+	</script>
+</head>
+<body>
+	<button onclick="epargnes()">Epargnes</button>
+</body>
+</html>

@@ -1,0 +1,632 @@
+/**
+* General
+*******************************************/
+
+body {
+	margin: 0;
+	width: 100%;
+}
+
+section, header, footer {
+	width: 100%;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+/**
+* Header
+*******************************************/
+
+#header {
+	height: 90px;
+	background-color: #46d7aa;
+	border: : solid black 2px;
+	color: white;
+	display: flex;
+	align-items: center;
+	box-sizing: border-box;	
+	justify-content: space-between;
+	padding: 0 20px;
+
+	transition: 0.25s ease;
+}
+
+#header:hover {
+	background-color: #13151d;
+}
+
+#Logo {
+	padding-left: 50px;
+}
+
+#header nav {
+	height: 90px;
+}
+
+#header nav {
+	display: flex;
+}
+
+#header ul {
+	display: flex;
+	list-style-type: none;
+}
+
+#header a,
+#header button {
+	color: white;
+	font-weight: bold;
+	font-size: 18px;
+	cursor: pointer;
+	transition: all 0.25s ease; 
+}
+
+#header a {
+	height: 100%;
+	display: block;
+	line-height: 90px;
+	text-decoration: none;
+	padding: 0 20px;
+}
+
+#header button {
+	padding: 20px 40px;
+	margin-left: 30px;
+	background-color: rgba(0,0,0,0);
+	border: none;
+	padding-top: 20px;
+	padding-right: 40px;
+}
+
+
+/**
+* Feature
+*******************************************/
+
+#feature {
+	margin: 0;
+	width: 100%
+	height: 550px;
+	background-color: #46d7aa;
+	display: flex;
+}
+
+#feature h1 {
+	margin: 0;
+	padding-top: 150px;
+	padding-left: 100px;
+
+	color: white;
+	font-family: Arial, sans-serif;
+	font-size: 60px;
+	font-weight: 200;
+}
+
+#feature p1 {
+	padding-left: 100px;
+
+	color: white;
+	font-family: Arial, sans-serif;
+	font-size: 20px;
+	font-weight: 200;
+}
+
+#feature form {
+	padding-left: 100px;
+}
+
+#City {
+	padding-top: 50px;
+	padding-left: 300px;
+	width:500px;
+	height: auto;
+	object-fit: contain;
+}
+
+#signup{
+	display:flex;
+}
+
+#useremail {
+	border: none;
+	height: 40px;
+	width: 200px;
+	margin:0px;
+
+	font-size:16px;
+}
+
+#sign {
+	cursor: pointer;
+
+	margin: 0px;
+	width: 110px;	
+	height: 43px;
+
+	color: white;
+	font-family: Arial, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	text-align: center;
+
+	border: solid black 2px;
+	background-color: black;
+
+	transition: 0.25s ease;
+}
+
+#sign:hover {
+	color: black;
+	background-color: #46d7aa;
+}
+
+/**
+* Mission
+*******************************************/
+
+#mission {
+	margin: 0;
+	padding: 50px 0px;
+	width: 100%;
+	height: 170px;
+	text-align: center;
+	background-color: #f7f7f7;
+}
+
+#mission h2 {
+	color:#46d7aa;
+	font-family: Arial, sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+#mission p1 {
+	font-family: Arial, sans-serif;
+	font-size: 25px;
+	font-weight: 200;
+}
+
+/**
+* Icons
+*******************************************/
+
+#icons {
+	display: flex;
+	text-align: center;
+
+	width: 100%;
+
+	margin: 0;
+	padding: 50px 0px;
+	padding-left: 150px;
+}
+
+.icon {
+	width: 40px;
+	height: auto;
+}
+
+#icons ul {
+	list-style-type: none;
+	padding: 0px 20px;
+}
+
+#icons h1 {
+	font-family: Arial, sans-serif;
+	font-size: 20px;
+}
+
+#icons p1 {
+	font-family: Arial, sans-serif;
+	color: #595959;
+}
+
+/**
+* Values
+*******************************************/
+
+#values {
+	background-color: #46d7aa;
+	text-align: center;
+	padding: 50px 0px;
+}
+
+#values h1 {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	color: white;
+}
+
+#values h2 {
+	font-family: Arial, sans-serif;
+	font-size: 50px;
+	font-weight: bold;
+	color: white;
+}
+
+#playbutton {
+	width: 70px;
+	height: auto;
+}
+
+/**
+* Answers
+*******************************************/
+
+#answers {
+	display: flex;
+	margin: 0;
+	padding: 50px;
+}
+
+#answers ul {
+	list-style-type: none;
+	padding-left: 50px;
+}
+
+#answers h1 {
+	font-family: Arial, sans-serif;
+	font-size: 40px;
+	font-weight: normal;
+}
+
+.plusicon {
+	cursor: pointer;
+	width: 3%;
+	height: auto;
+}
+
+#answers p1 {
+	cursor: pointer;
+	font-family: Arial, sans-serif;
+	font-weight: bolder;
+}
+
+#phone {
+	padding-left: 100px;
+}
+
+/**
+* Agency
+*******************************************/
+
+#agency {
+	display: flex;
+	margin: 0;
+	padding: 50px;
+}
+
+#agency ul {
+	list-style-type: none;
+	padding-left: 100px;
+}
+
+.checkmark {
+	width: 5%;
+	height: auto;
+}
+
+#agency h1 {
+	font-family: Arial, sans-serif;
+	font-size: 40px;
+	font-weight: normal;
+}
+
+#agency p1 {
+	font-family: Arial, sans-serif;
+	color: #595959;
+}
+
+#laptop {
+	padding-left: 50px;
+}
+
+/**
+* Our plans
+*******************************************/
+
+#plans {
+	margin:0;
+	text-align: center;
+	background-color: #f7f7f7;
+}
+
+#plans h1 {
+	padding-top: 50px;
+
+	font-family: Arial, sans-serif;
+	font-size: 50px;
+	font-weight: normal;
+}
+
+#plans p1 {
+	font-family: Arial, sans-serif;
+	color: #595959;
+}
+
+#plans h2 {
+	font-family: Arial, sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#plans h3 {
+	color: #46d7aa;
+	font-family: Arial, sans-serif;
+	font-size: 60px;
+	font-weight: normal;
+
+	margin: 0;
+}
+
+#plans p2 {
+	font-family: Arial, sans-serif;
+	color: #bfbfbf;
+}
+
+#pricetables {
+	display: flex;
+	padding-left: 100px;
+	padding-bottom: 100px;
+}
+
+#plans ul {
+	list-style-type: none;
+}
+
+.tables {
+	width: 300px;
+	height: 500px;
+	border: solid white 20px;
+
+	background-color: white;
+	margin-left: 30px;
+
+	transition: 0.25 ease;
+}
+
+.tables:hover {
+	box-shadow: 0 0 30px rgba(0, 0, 0.3);
+}
+
+.clickhere {
+	cursor: pointer;
+
+	border: solid #46d7aa;
+	background-color: white;
+	width: 150px;
+	height: 45px;
+
+	font-family: Arial, sans-serif;
+	font-weight: bold;
+
+	transition: 0.25s ease;
+}
+
+.clickhere:hover {
+	background-color: #46d7aa;
+	color: white;
+}
+
+/**
+* Our team
+*******************************************/
+
+#team {
+	text-align: center;
+	margin: 0;
+}
+
+#team h1 {
+	padding-top: 50px;
+
+	font-family: Arial, sans-serif;
+	font-size: 50px;
+	font-weight: normal;
+}
+
+#team p1 {
+	font-family: Arial, sans-serif;
+	color: #595959;
+}
+
+#team h2 {
+	font-family: Arial, sans-serif;
+	font-weight: bold;
+}
+
+#team p2 {
+	color: #46d7aa;
+	font-family: Arial, sans-serif;
+}
+
+#staff {
+	display: flex;
+	padding-left: 150px;
+	padding-bottom: 100px;
+}
+
+#team ul {
+	list-style-type: none;
+}
+
+.member {
+	width: 300px;
+	height: 475px;
+	border: none;
+
+	background-color: white;
+	margin-left: 30px;
+
+	box-shadow: 0 0 20px rgba(0, 0, 0.1);
+}
+
+.person {
+	width: 300px;
+	height: auto;
+}
+
+.circleicon {
+	cursor: pointer;
+	width: 15%;
+	height: auto;
+	padding-left: 10px;
+}
+
+/**
+* Discount
+*******************************************/
+
+#discount {
+	text-align: center;
+	background-color: #46d7aa;
+}
+
+#discount h1 {
+	font-family: Arial, sans-serif;
+	color: white;
+	padding-top: 100px;
+	font-size: 50px;
+	font-weight: normal;
+}
+
+#discount p1 {
+	font-family: Arial, sans-serif;
+	color: white;
+	font-size: 20px;
+}
+
+#email1 {
+	padding-left: 500px;
+	padding-bottom: 100px;
+}
+
+/**
+* Our testimonials
+*******************************************/
+
+#testimonials {
+	text-align: center;
+	background-color: #f7f7f7;
+	padding-top: 30px;
+}
+
+#testimonials h1 {
+	font-family: Arial, sans-serif;
+	font-size: 50px;
+	font-weight: normal;
+}
+
+#testimonials p1 {
+	font-family: Arial, sans-serif;
+	font-size: 20px;
+	color: #595959;
+}
+
+#testimonials h2 {
+	font-family: Arial, sans-serif;
+	font-weight: bold;
+	font-size: 25px;
+}
+
+#testimonials p2 {
+	color: #bfbfbf;
+	font-family: Arial, sans-serif;
+	font-size: 16px;
+}
+
+#boxes {
+	display: flex;
+	padding-left: 30px;
+	padding-bottom: 80px;
+}
+
+#testimonials ul {
+	list-style-type: none;
+}
+
+.johndoe {
+	text-align: left;
+
+	width: 600px;
+	height: 250px;
+	border: solid #bfbfbf 0.1px;
+
+	background-color: white;
+	margin-left: 30px;
+}
+
+.subbox {
+	padding: 30px;
+}
+
+.circlephoto {
+	padding-left: 30px;
+	padding-right: 40px;
+}
+
+.flex {
+	display: flex;
+}
+
+/**
+* Footer
+*******************************************/
+
+#footer {
+	display: flex;
+	padding-top: 50px;
+	padding-left: 80px;
+	padding-bottom: 100px;
+}
+
+#footer h1 {
+	font-family: Arial, sans-serif;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+#footer p1 {
+	font-family: Arial, sans-serif;
+	font-weight: normal;
+	color: #595959;
+}
+
+#footer p2 {
+	font-family: Arial, sans-serif;
+	font-weight: normal;
+	color: #bfbfbf;
+}
+
+#footer a {
+	font-family: Arial, sans-serif;
+	font-weight: normal;
+	color: #595959;
+	text-decoration: none;
+}
+
+#footer ul {
+	margin-left: 10px;
+	width:300px;
+
+	list-style-type: none;
+}
+
+/**
+* End
+*******************************************/
+
+#end {
+	margin: 0;
+	padding: 0px 50px;
+}
+
+#end p1 {
+	font-family: Arial, sans-serif;
+	font-weight: normal;
+	color: #595959;
+	font-size: 12px;
+}

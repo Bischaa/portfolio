@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script>
+		var reference = function() {
+			var s = prompt("Entrez le nom du site.");
+			s=s.toUpperCase();
+			switch(s){
+				case "GOOGLE": window.location="http://google.com";
+				break;
+				case "FACEBOOK": window.location="http://facebook.com";
+				break;
+				case "INSTAGRAM": window.location="http://instagram.com";
+				break;
+				case "REDDIT": window.location="http://reddit.com";
+				break;
+				case "UDEM": window.location="http://umontreal.ca";
+				break;
+				default: window.location="#";
+				break;
+			}
+		}
+	</script>
+</head>
+<body onload="reference()">
+	<h1 style="text-align: center;">Test fonction référence.<br>Adresse entrée invalide.</h1>
+</body>

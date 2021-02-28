@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hot-Dog</title>
+	<script type="text/javascript" language="Javascript">
+		function condiment(){
+		}
+		function garnir(){
+			choix.chxMoutarde.checked = true;
+			choix.chxKetchup.checked = true;
+			choix.chxRelish.checked = true;
+		}
+	</script>
+</head>
+<body>
+	<form name="choix">
+		<h1>Qu'aimez-vous mettre dans votre hot dog?</h1>
+		<input type="checkbox" name="chxMoutarde">de la moutarde<br>
+		<input type="checkbox" name="chxKetchup">du ketchup<br>
+		<input type="checkbox" name="chxRelish">de la relish<br>
+		<input type="button" value="Garni!" onclick="garnir()">
+	</form>
+</body>
+</html>
