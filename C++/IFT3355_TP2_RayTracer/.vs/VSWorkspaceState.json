@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\RayTracer",
+    "\\RayTracer\\Debug",
+    "\\RayTracer\\meshes",
+    "\\RayTracer\\referenceResults",
+    "\\RayTracer\\scenes",
+    "\\RayTracer\\textures"
+  ],
+  "SelectedNode": "\\RayTracer\\RayTracer.sln",
+  "PreviewInSolutionExplorer": false
+}
