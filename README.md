@@ -1,5 +1,5 @@
-# Maxime Ton's Portfolio
-Maxime Ton's Project Portfolio
+# Maxime Ton's Sample Projects Portfolio
+Maxime Ton's Sample Projects Portfolio
 
 ## Java Projects
 __IFT1025-TP1__ : Simple Search Engine that indexes multiples texts and creates an index structure that lets us launch a search for the said text;\
@@ -12,6 +12,12 @@ __IFT2905-TP1__ : Android App that tests people's reflexes through a simple butt
 __IFT1015-TP2__ : Simple Tweet analyser using a bank of given tweets;
 __IFT3355-TP1__ : Three.js animated web robot;\
 __IFT3355-TP3__ : Three.js Hermite interpolator and L-System to draw trees in 2D / 3D;
+
+## JavaScript Projects
+__IFT3355-TP2__ : C++ Image Raytracer;
+
+## Software Analysis Projects
+__IFT3913-TP1-3__ : Code Metrics, Maintability analysis and Hypothesis analysis of JFreeChart Library;
 
 ## Web Projects
 __IFT1005-Devoirs__ : Various different small web stuff;\
