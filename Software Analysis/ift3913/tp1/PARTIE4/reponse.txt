@@ -1,0 +1,5 @@
+L'heuristique d'egon ne peut pas être utilisée pour détecter les classes divines, car elle est dérivée de CSEC.
+
+CSEC ne permet pas de détecter les classes divines, car le score CSEC d'une classe augmente autant lorsqu'elle utilise d'autres classes que lorsqu'elle est utilisée par d'autres classes. Ainsi, les classes "utility" qui sont utilisées par un grand nombre de classes seront confondues avec les classes divines.
+
+Afin de rendre egon plus utile, il faut modifier CSEC de sorte qu'il compte seulement les occurences où une classe utilise une autre classe dans son code.

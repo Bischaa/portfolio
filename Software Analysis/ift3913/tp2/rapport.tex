@@ -1,0 +1,390 @@
+\documentclass{article}
+
+\usepackage[french]{babel} 
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+\usepackage{array}
+
+
+\usepackage{float}
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{algorithmicx}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+%Dessins plz
+
+ \usepackage[usenames,dvipsnames]{pstricks}
+ \usepackage{epsfig}
+ \usepackage{pst-grad} % For gradients
+ \usepackage{pst-plot} % For axes
+ \usepackage[space]{grffile} % For spaces in paths
+ \usepackage{etoolbox} % For spaces in paths
+ \makeatletter % For spaces in paths
+ \patchcmd\Gread@eps{\@inputcheck#1 }{\@inputcheck"#1"\relax}{}{}
+ \makeatother
+
+
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+%\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\ (\hmwkClassInstructor\ \hmwkClassTime): \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Partie \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Homework Details
+%   - Title
+%   - Due date
+%   - Class
+%   - Section/Time
+%   - Instructor
+%   - Author
+%
+
+\newcommand{\hmwkTitle}{Rapport TP2}
+\newcommand{\hmwkDueDate}{25 octobre 2022}
+\newcommand{\hmwkClass}{\ \ IFT 3913}
+\newcommand{\hmwkClassTime}{}%Section 
+\newcommand{\hmwkClassInstructor}{Professeur: Michalis Famelis}
+\newcommand{\hmwkAuthorName}{\textbf{Zi Kai Qin, 20191254; Maxime Ton, 20143044}}
+
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{Pour\ le\ \hmwkDueDate\ à 23:59 }\\
+    \vspace{0.1in}\large{\textit{\hmwkClassInstructor\ \hmwkClassTime}}
+    \vspace{3in}
+}
+
+\author{\hmwkAuthorName}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Partie \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+
+%floor and ceiling functions
+%\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+%\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+
+% Contradiction et limites
+\newcommand{\absurde}{\rightarrow \leftarrow}
+\newcommand{\tend}{\rightarrow}
+\newcommand{\tendUnif}{\xrightarrow{\text{unif}}}
+%make this work
+%\newcommand{\par}[1]{\xrightarrow{\text{#1}}}
+
+
+
+% ensembles
+\newcommand{\naturel}{\mathbb{N}}
+\newcommand{\entier}{\mathbb{Z}}
+\newcommand{\rationnel}{\mathbb{Q}}
+\newcommand{\reel}{\mathbb{R}}
+\newcommand{\complexe}{\mathbb{C}}
+\newcommand{\compl}[1]{\overline{#1}}
+\newcommand{\e}{\varepsilon}
+\let\emptyset\varnothing
+
+
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+\newcommand{\dy}{\mathrm{d}y}
+\newcommand{\dt}{\mathrm{d}t}
+
+
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\large Solution}}
+
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+
+%lul
+\newcommand{\shrug}[1][]{%
+\begin{tikzpicture}[baseline,x=0.8\ht\strutbox,y=0.8\ht\strutbox,line width=0.125ex,#1]
+\def\arm{(-2.5,0.95) to (-2,0.95) (-1.9,1) to (-1.5,0) (-1.35,0) to (-0.8,0)};
+\draw \arm;
+\draw[xscale=-1] \arm;
+\def\headpart{(0.6,0) arc[start angle=-40, end angle=40,x radius=0.6,y radius=0.8]};
+\draw \headpart;
+\draw[xscale=-1] \headpart;
+\def\eye{(-0.075,0.15) .. controls (0.02,0) .. (0.075,-0.15)};
+\draw[shift={(-0.3,0.8)}] \eye;
+\draw[shift={(0,0.85)}] \eye;
+% draw mouth
+\draw (-0.1,0.2) to [out=15,in=-100] (0.4,0.95); 
+\end{tikzpicture}}
+
+
+%shortcut
+\renewcommand{\theenumii}{\arabic{enumii}}
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\ifff}{\leftrightarrow}
+\newcommand{\Poly}{\mbox{\bf P}}
+\newcommand{\NP}{\mbox{\bf NP}}
+\newcommand{\NPC}{\mbox{\bf NPC}}
+\newcommand{\CNP}{\mbox{\bf Co-NP}}
+\newcommand{\R}{\mbox{\bf R}}
+\newcommand{\RE}{\mbox{\bf RE}}
+\newcommand{\donne}{\stackrel{\hspace{-3pt}*}{|\hspace{-5pt}-\hspace{-5pt}-\
+}}
+
+\newtheorem{cor}{Corollaire}
+\newtheorem{obs}{Observation}
+\newtheorem{con}{Convention}
+\newtheorem{dfn}{D\'efinition}
+\newtheorem{thm}{Th\'eor\`eme}
+\newtheorem{lem}{Lemme}
+\newtheorem{prop}{Proposition}
+\newtheorem{prob}{Probl\`eme}
+\newtheorem{ex}{Exercise}
+\newtheorem{rem}{Remarque}
+\newtheorem{algo}{Algorithme}
+
+
+\newcommand{\re}{{\mathbb R}}
+\newcommand{\rep}{{\mathbb R}^{> 0}}
+\newcommand{\renn}{{\mathbb R}^{\geq 0}}
+\newcommand{\nat}{{\mathbb N}}
+\newcommand{\intg}{{\mathbb Z}}
+\newcommand{\intgp}{\intg^{>0)}}
+\newcommand{\intgn}{\intg^{<0)}}
+\newcommand{\intgnp}{\intg^{\geq 0}}
+\newcommand{\intgnn}{\intg^{\leq 0}}
+\newcommand{\barr}{\overline}
+\newcommand{\np}{\mbox{{\it NP}}}
+\newcommand{\npc}{\mbox{{\it NPC}}}
+\newcommand{\cnp}{\mbox{{\it co-NP}}}
+\newcommand{\p}{\mbox{{\it P}}}
+\newcommand{\cp}{\mbox{{\it co-P}}}
+\newcommand{\twobox}{\marginpar{\huge {$\Box$ \hspace{0.5cm}$\Box$} }} 
+\newcommand{\repbox}{\marginpar{{\Large \begin{tabular}{|c|}\hline \ \ \
+\\ \hline \end{tabular}}} } 
+\newcommand{\ssi}{si et seulement si }
+\renewcommand{\theprob}{\thesection.\arabic{prob}}
+\newcommand{\diam}{{\rm diam}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\cha}{cha\^\i ne}
+\newcommand{\ecc}{{\rm ec}}
+\newcommand{\vcc}{{\rm vc}}
+
+
+
+
+
+
+\begin{document}
+\maketitle
+\pagebreak
+
+\section{Introduction:}
+Nous commençons avec un plan GQM où G (Goal) et Q (Questions) sont déjà définies:
+
+\begin{enumerate}[leftmargin=*, label=Q\arabic*:]
+\item[G:] Évaluer la maintenabilité de la branche master de JFreeChart;
+\item Le niveau de documentation des classes est-il approprié par rapport à leur complexité?
+\item La conception est-elle bien modulaire?
+\item Le code est-il mature?
+\item Le code peut-il être testé bien automatiquement?
+\end{enumerate}
+
+Afin de répondre aux questions justement et sans ambigüité, nous définissons la maintenabilité comme suit:
+
+\begin{enumerate}[leftmargin=*, rightmargin=2em, label=\textbullet]
+\item
+Ensemble d'attributs portant sur l'effort nécessaire pour faire des modifications données.
+Sous-caractéristiques: facilité d'analyse, facilité de modification, stabilité et facilité de test.
+\end{enumerate}
+
+Nous nous servirons de cette définition dans le choix des métriques.
+
+\section{Partie 1: Choix des métriques:}
+
+La partie 1 consiste à associer des métriques à chacune des questions.
+Les métriques choisies sont les suivantes :
+
+\begin{enumerate}[leftmargin=*]
+\item
+LOC (nombre de lignes de code) et NCLOC (nombre de lignes non-commentaires):
+Nous donnent un aperçu du niveau de documentation à l'intérieur du code source (Q1);
+\item
+WMC (weighted methods per class):
+Nous donne une idée de la complexité du code dans une classe, ce qui nous permet
+de mesurer la proportion de la documentation par rapport à la complexité (Q1),
+ainsi que la réutilisabilité des classes et donc leur modularité (Q2);
+\item
+AGE (age d'un fichier): Nous donne une idée générale de la maturité du code (Q3);
+\item
+CC (complexité cyclomatique): Compte le nombre de chemins que le programme peut prendre 
+(if/else, etc...). Cela nous donne une idée du nombre de cas à tester (Q4);
+\item
+CBO (coupling between objects):
+Nous permet simplement d'évaluer l'interdépendance entre les classes (Q2);
+\item
+NEC (nombre d'erreurs):
+Nous permet d'évaluer si le code peut être testé facilement et de façon directe (Q4).
+Il nous permet aussi de mesurer le niveau de maturité de façon indirecte (Q3);
+\item
+NOM (nombre de fonctions):
+Nous permet d'obtenir une mesure de CC par méthode, ce qui est plus facilement utilisé comme mesure de CC qu'une valeur CC totale, nous permettant ainsi de mieux évaluer l'automatisation des tests (Q4);
+\end{enumerate}
+
+Ces métriques sont associées aux questions comme suit:
+
+\begin{enumerate}[leftmargin=*, label=Q\arabic*:]
+\item LOC, NCLOC et WMC;
+\item WMC et CBO;
+\item AGE et NEC;
+\item CC, NOM et NEC;
+\end{enumerate}
+
+\section{Partie 2: Mesures des métriques:}
+Les résultats de la mesure, ainsi que les méthodologies et outils utilisés
+pour la mesure sont expliqués en détail dans le README.
+Parmi les données collectées, les plus pertinentes sont les suivantes:
+
+\begin{enumerate}[leftmargin=*]
+\item
+LOC: 256423 total, 250.7 moyen; NCLOC: 132420 total, 129.4 moyen; CLOC: 124003 total, 121.2 moyen;
+\item
+WMC: 21.3 moyen, 681 maximum;
+\item
+AGE: Licence obtenue pour version 1.0 il y a 16 ans, dernière mise-à-jour il y a 4 mois;
+\item
+CC: 21109 chemins totaux, 18420 dans notre fichier main, 2689 dans le fichier test;
+\item
+CBO: 6.2 moyen, 86 maximum;
+\item
+NEC: 287 erreurs totales;
+\item
+NOM: 11144 fonctions totales;
+\end{enumerate}
+
+\section{Partie 3: Analyse des métriques:}
+
+\begin{enumerate}[leftmargin=*, label=Q\arabic*:]
+\item
+Dans le code de JFreeChart, la densité de commentaires est CLOC/LOC $= 48.4\%$, ce qui représente
+une densité de commentaires excellente $^1$ pour toute base de code de n'importe quelle complexité.
+Nous concluons donc que le niveau de documentation est très adéquat par rapport à la complexité
+du code.
+
+\item
+Selon PHP Depend, le WMC d'une classe ne devrait pas dépasser 50 $^2$.
+Nous définissons alors 6 catégories de complexité:
+\textbf{minimale} pour WMC $\leq 10$,
+\textbf{faible} pour $10 <$ WMC $\leq 20$,
+\textbf{moyenne} pour $20 <$ WMC $\leq 30$,
+\textbf{élevée} pour $30 <$ WMC $\leq 40$,
+\textbf{très élevée} pour $40 <$ WMC $\leq 50$, et
+\textbf{excessive} pour WMC $> 50$.
+Dans le code de JFreeChart, $58\%$ des classes sont de complexité minimale, et $73\%$ des classes
+sont de complexité faible ou moindre. Nous pourrions alors dire que le code est majoritairement
+de complexité faible ou moindre.
+\\
+Quant au CBO d'une classe, Microsoft suggère qu'il ne doit pas dépasser 9 $^3$. Dans le code de
+JFreeChart, $20\%$ des classes dépasse ce seuil et au moins $53\%$ des classes ont des couplages
+avec 4 classes distinctes ou plus $^4$. Nous considérons ce niveau de couplage élevé, et donc nous ne
+pouvons que conclure que réutilisabilité du code est faible, et la conception n'est pas bien
+modulaire.
+
+\item
+Le répositoire de JFreeChart a été créé il y a au moins 16 ans, et il reçoit des commits de temps
+en temps, ce qui suggère que ce logiciel est plus ou moins mature. De plus, dans le code source,
+nous avons trouvé 287 erreurs ou bogues. Distribué sur la totalité du code, cela revient à
+NEC/NCLOC = 2.2 erreurs par mille lignes de code. En considérant qu'en moyenne 15 erreurs par
+mille lignes se retrouvent dans le produit final, la fréquence d'erreurs dans le code de JFreeChart
+semble comparativement excellente. Nous pouvons donc conclure que le code est mature.
+
+\item
+Le code de JFreeChart a une complexité cyclomatique totale de 21109 et le répertoire contient 11144 fonctions totales. CC/NOM nous donne $21109/11144=1.9$ CC par fonction de moyenne ce qui peut-être considéré assez bas (Microsoft indique qu'une limite de 10 CC par fonction est une bonne limite $^5$). Cela veut donc dire qu'on aura moins de cas uniques à tester, permettant ainsi une automatisation des tests beaucoup plus simple. De plus, comme vu plus haut, JFreeChart contient une assez basse fréquence d'erreurs, permettant ainsi une meilleur fiabilité lors de l'exécution des tests. Nous pouvons donc conclure que JFreeChart peut facilement être testé automatiquement.
+\end{enumerate}
+\vspace*{\fill}
+\begin{enumerate}
+\item[$^1$]
+\footnotesize Members of the Infospheres team at Caltech, The Infospheres Java Coding Standard, SourceFormatX, 1999/08/11, http://www.sourceformat.com/coding-standard-java-caltech.htm
+\item[$^2$]
+\footnotesize Pichler, Manuel, WMC - Weighted Method Count, PHP Depend, Retrieved 2022/10/25, https://pdepend.org/documentation/software-metrics/weighted-method-count.html
+\item[$^3$]
+\footnotesize Mikejo5000 et al., Code metrics - Class coupling, Microsoft, 2022/04/29, https://learn.microsoft.com/en-us/visualstudio/code-quality/code-metrics-class-coupling?view=vs-2022
+\item[$^4$]
+\footnotesize Voir tp2analysis.xlsx
+\item[$^5$]
+\footnotesize Mikejo5000 et al., Code metrics - Cyclomatic complexity, Microsoft, 2022/04/29, https://learn.microsoft.com/en-us/visualstudio/code-quality/code-metrics-cyclomatic-complexity?view=vs-2022
+
+\end{enumerate}
+
+\end{document}
